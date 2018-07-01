@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Goodplays</string>
+    <string name="search_hint">Enter an artist name</string>
+    <string name="title_activity_track_details2">TrackDetailsActivity2</string>
+    <string name="title_activity_details_artist">DetailsArtist</string>
+    <string name="title_activity_details_track">DetailsTrackActivity</string>
+</resources>
