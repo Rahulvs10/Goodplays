@@ -20,30 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.TracksActivity"
-            android:parentActivityName=".Activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-        <activity
-            android:name=".Activities.ArtistsActivity"
-            android:parentActivityName=".Activities.MainActivity" />
-        <activity
             android:name=".Activities.TrackDetailsActivity"
             android:parentActivityName=".Activities.MainActivity" />
         <activity
             android:name=".Activities.ArtistDetailsActivity"
-            android:parentActivityName=".Activities.MainActivity" />
-        <activity
-            android:name=".Activities.ArtistTracksActivity"
-            android:parentActivityName=".Activities.MainActivity" />
-        <activity
-            android:name=".Activities.ArtistAlbumsActivity"
             android:parentActivityName=".Activities.MainActivity" />
         <activity
             android:name=".Activities.AlbumDetailsActivity"
@@ -54,7 +34,9 @@
             android:authorities="com.example.rahul.goodplays"
             android:exported="false" />
 
-        <activity android:name=".Activities.FavouriteActivity"></activity>
+        <activity android:name=".Activities.Main2Activity"
+            android:parentActivityName=".Activities.MainActivity"/>
+
     </application>
 
 </manifest>

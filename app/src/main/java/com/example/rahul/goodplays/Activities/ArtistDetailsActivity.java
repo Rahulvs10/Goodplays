@@ -48,7 +48,6 @@ import retrofit2.Response;
 public class ArtistDetailsActivity extends AppCompatActivity {
 
     TextView ratingField, nationalityField, genresField, emptyField, emptyField2;
-    LinearLayout tracksLayout;
     FrameLayout albumsLayout;
     ListView topTracks, topAlbums;
     ImageView twitterButton;
@@ -75,7 +74,6 @@ public class ArtistDetailsActivity extends AppCompatActivity {
         emptyField = findViewById(R.id.empty2);
         emptyField2 = findViewById(R.id.empty1);
 
-        tracksLayout = findViewById(R.id.moreTracksLayout);
         albumsLayout = findViewById(R.id.moreAlbumsLayout);
 
         progressBar1 = findViewById(R.id.progressbar1);
@@ -252,16 +250,6 @@ public class ArtistDetailsActivity extends AppCompatActivity {
             }
         });
 
-        tracksLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),ArtistTracksActivity.class);
-                i.putExtra("name",name);
-                i.putExtra("id",artistID);
-                startActivity(i);
-            }
-        });
-
         topAlbums.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -278,7 +266,7 @@ public class ArtistDetailsActivity extends AppCompatActivity {
         albumsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),ArtistAlbumsActivity.class);
+                Intent i = new Intent(getApplicationContext(),Main2Activity.class);
                 i.putExtra("name",name);
                 i.putExtra("id",artistID);
                 startActivity(i);

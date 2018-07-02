@@ -135,7 +135,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@android:color/black"
-            android:background="#eee"
             android:text="Top Tracks"/>
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -143,8 +142,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".Activities.ArtistAlbumsActivity"
-            tools:showIn="@layout/activity_artist_tracks">
+            tools:context=".Activities.ArtistAlbumsActivity">
 
             <ProgressBar
                 android:id="@+id/progressbar1"
@@ -174,52 +172,12 @@
             android:layout_height="1dp"
             android:background="@color/dividerColor" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/moreTracksLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp"
-                android:paddingLeft="8dp"
-                android:paddingStart="8dp"
-                android:background="?android:attr/selectableItemBackground"
-                tools:context=".Activities.TrackDetailsActivity">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@android:color/black"
-                    android:text="More tracks"/>
-
-                <ImageView
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/next_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="20dp" />
-
-            </LinearLayout>
-        </FrameLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@android:color/black"
-            android:background="#eee"
             android:text="Top Albums"/>
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -227,8 +185,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".Activities.ArtistAlbumsActivity"
-            tools:showIn="@layout/activity_artist_tracks">
+            tools:context=".Activities.ArtistAlbumsActivity">
 
             <ProgressBar
                 android:id="@+id/progressbar2"
@@ -255,8 +212,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor" />
+            android:layout_height="16dp" />
 
         <FrameLayout
             android:id="@+id/moreAlbumsLayout"
@@ -282,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="@android:color/black"
-                    android:text="More albums"/>
+                    android:text="More tracks and albums"/>
 
                 <ImageView
                     android:layout_gravity="center_vertical"

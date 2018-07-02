@@ -1,33 +1,40 @@
 package com.example.rahul.goodplays.Activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.rahul.goodplays.R;
+import com.example.rahul.goodplays.SimpleFragmentPagerAdapter;
 
+/**
+ * Displays a {@link ViewPager} where each page shows a different day of the week.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
-    }
 
-    public void tracks(View view){
-        Intent intent = new Intent(this,TracksActivity.class);
-        startActivity(intent);
+        // Find the view pager that will allow the user to swipe between fragments
+        ViewPager viewPager =  findViewById(R.id.viewpager);
 
-    }
+        // Create an adapter that knows which fragment should be shown on each page
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter( getSupportFragmentManager());
 
-    public void artists(View view){
-        Intent intent = new Intent(this,ArtistsActivity.class);
-        startActivity(intent);
-    }
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
 
-    public void favourite(View view){
-        Intent intent = new Intent(this,FavouriteActivity.class);
-        startActivity(intent);
+        TabLayout tabLayout =  findViewById(R.id.tabs);
+
+        // Connect the tab layout with the view pager.
+
+        tabLayout.setupWithViewPager(viewPager);
+
     }
 }
+
