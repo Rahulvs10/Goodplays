@@ -34,15 +34,11 @@ public class Album implements Serializable {
     @SerializedName("album_coverart_100x100")
     @Expose
     private String albumCoverart100x100;
+    @SerializedName("album_edit_url")
+    @Expose
+    private String albumEditUrl;
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    public Album() {
-    }
-
-    public Album(Integer albumId, String albumName, Integer albumRating, Integer albumTrackCount, String albumReleaseDate, Integer artistId, String artistName, String albumLabel, String albumCoverart100x100) {
+    public Album(Integer albumId, String albumName, Integer albumRating, Integer albumTrackCount, String albumReleaseDate, Integer artistId, String artistName, String albumLabel, String albumCoverart100x100, String albumEditUrl) {
         this.albumId = albumId;
         this.albumName = albumName;
         this.albumRating = albumRating;
@@ -52,6 +48,7 @@ public class Album implements Serializable {
         this.artistName = artistName;
         this.albumLabel = albumLabel;
         this.albumCoverart100x100 = albumCoverart100x100;
+        this.albumEditUrl = albumEditUrl;
     }
 
     public Integer getAlbumId() {
@@ -124,5 +121,13 @@ public class Album implements Serializable {
 
     public void setAlbumCoverart100x100(String albumCoverart100x100) {
         this.albumCoverart100x100 = albumCoverart100x100;
+    }
+
+    public String getAlbumEditUrl() {
+        return albumEditUrl;
+    }
+
+    public void setAlbumEditUrl(String albumEditUrl) {
+        this.albumEditUrl = albumEditUrl;
     }
 }

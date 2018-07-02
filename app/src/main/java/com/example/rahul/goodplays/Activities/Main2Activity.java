@@ -1,9 +1,6 @@
 package com.example.rahul.goodplays.Activities;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
@@ -11,12 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.rahul.goodplays.Data.FavouriteContract;
 import com.example.rahul.goodplays.R;
-import com.example.rahul.goodplays.SimpleFragmentPagerAdapter;
-import com.example.rahul.goodplays.SimpleFragmentPagerAdapter2;
+import com.example.rahul.goodplays.Rest.SimpleFragmentPagerAdapter2;
 
 import java.util.Objects;
 

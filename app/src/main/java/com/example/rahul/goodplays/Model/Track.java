@@ -47,9 +47,11 @@ public class Track implements Serializable {
     @SerializedName("primary_genres")
     @Expose
     private PrimaryGenres primaryGenres;
+    @SerializedName("track_share_url")
+    @Expose
+    private String trackShareUrl;
 
-
-    public Track(Integer trackId, String trackName, Integer trackRating, Integer trackLength, Integer hasLyrics, Integer lyricsId, Integer albumId, String albumName, Integer artistId, String artistName, String albumCoverart100x100, String firstReleaseDate, PrimaryGenres primaryGenres) {
+    public Track(Integer trackId, String trackName, Integer trackRating, Integer trackLength, Integer hasLyrics, Integer lyricsId, Integer albumId, String albumName, Integer artistId, String artistName, String albumCoverart100x100, String firstReleaseDate, PrimaryGenres primaryGenres, String trackShareUrl) {
         this.trackId = trackId;
         this.trackName = trackName;
         this.trackRating = trackRating;
@@ -63,6 +65,7 @@ public class Track implements Serializable {
         this.albumCoverart100x100 = albumCoverart100x100;
         this.firstReleaseDate = firstReleaseDate;
         this.primaryGenres = primaryGenres;
+        this.trackShareUrl = trackShareUrl;
     }
 
     public Integer getTrackId() {
@@ -167,5 +170,13 @@ public class Track implements Serializable {
 
     public void setPrimaryGenres(PrimaryGenres primaryGenres) {
         this.primaryGenres = primaryGenres;
+    }
+
+    public String getTrackShareUrl() {
+        return trackShareUrl;
+    }
+
+    public void setTrackShareUrl(String trackShareUrl) {
+        this.trackShareUrl = trackShareUrl;
     }
 }

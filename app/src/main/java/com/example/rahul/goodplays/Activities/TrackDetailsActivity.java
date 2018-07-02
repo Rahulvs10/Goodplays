@@ -1,9 +1,11 @@
 package com.example.rahul.goodplays.Activities;
 
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,12 @@ import com.example.rahul.goodplays.Rest.ApiClient;
 import com.example.rahul.goodplays.Rest.ApiInterface;
 import com.squareup.picasso.Picasso;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +52,7 @@ public class TrackDetailsActivity extends AppCompatActivity {
     ImageView trackImage;
     ProgressBar progressBar;
     int trackID, rating, length;
-    String name, date, genre, artist, album;
+    String name, date, genre, artist, album, url;
 
     final String API_KEY = "0266bc6a327f383715ae0dd708606641";
 
@@ -68,6 +76,7 @@ public class TrackDetailsActivity extends AppCompatActivity {
           album = track.getAlbumName();
         final int artistID = track.getArtistId();
         final int albumID = track.getAlbumId();
+        url = track.getTrackShareUrl();
 
         genreText = findViewById(R.id.genreText);
         ratingText = findViewById(R.id.ratingText);
@@ -106,8 +115,6 @@ public class TrackDetailsActivity extends AppCompatActivity {
         else
             yearText.setText("Year N/A");
 
-        Picasso.get().load(track.getAlbumCoverart100x100()).into(trackImage);
-
         artistLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,40 +137,7 @@ public class TrackDetailsActivity extends AppCompatActivity {
         });
 
         if(track.getHasLyrics() != 0){
-            ApiInterface apiService =
-                    ApiClient.getClient().create(ApiInterface.class);
-
-            Call<Example> exampleCall = apiService.getTrackLyrics(trackID, API_KEY);
-
-            exampleCall.enqueue(new Callback<Example>()
-
-            {
-                @Override
-                public void onResponse (Call < Example > call, Response< Example > response){
-                    lyricsView.setVisibility(View.VISIBLE);
-                    Lyrics lyrics = response.body().getMessage().getBody().getLyrics();
-                    progressBar.setVisibility(View.GONE);
-
-                    if(lyrics.getLyricsBody() != null) {
-                        lyricsText.setText(lyrics.getLyricsBody());
-                        lyricsText.setVisibility(View.VISIBLE);
-                    }
-                    else{
-                        lyricsView.setVisibility(View.INVISIBLE);
-                        lyricsText.setVisibility(View.VISIBLE);
-                        lyricsText.setText("Lyrics not found!!");
-                    }
-                }
-
-                @Override
-                public void onFailure (Call < Example > call, Throwable t){
-                    Log.i("Failed",t.getMessage());
-                    progressBar.setVisibility(View.GONE);
-                    lyricsView.setVisibility(View.INVISIBLE);
-                    lyricsText.setVisibility(View.VISIBLE);
-                    lyricsText.setText("Lyrics not found!!");
-                }
-            });
+            new Lyrics().execute();
         }
         else {
             progressBar.setVisibility(View.GONE);
@@ -173,6 +147,53 @@ public class TrackDetailsActivity extends AppCompatActivity {
         }
 
     }
+
+    private class Lyrics extends AsyncTask<Void, Void, Void> {
+        String lyrics;
+        String imgSrc;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+
+                Elements ly = document.select("p[class=mxm-lyrics__content]");
+
+                StringBuilder builder = new StringBuilder();
+
+                for(Element lys : ly)
+                    builder.append(lys.wholeText());
+
+                lyrics = builder.toString();
+
+                Elements img = document.select("div[class=banner-album-image-desktop] img[src]");
+                // Locate the src attribute
+                imgSrc = img.attr("src");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            progressBar.setVisibility(View.GONE);
+            lyricsView.setVisibility(View.VISIBLE);
+            lyricsText.setVisibility(View.VISIBLE);
+            lyricsText.setText(lyrics);
+            Picasso.get().load(Uri.parse("http:"+imgSrc)).into(trackImage);
+        }
+    }
+
+
 
     private String getGenre(PrimaryGenres primaryGenre) {
         String val = "";

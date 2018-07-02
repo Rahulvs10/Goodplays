@@ -19,7 +19,7 @@ import android.support.v4.content.Loader;
 
 
 import com.example.rahul.goodplays.Data.FavouriteContract;
-import com.example.rahul.goodplays.Data.ListCursorAdapter;
+import com.example.rahul.goodplays.Adapters.ListCursorAdapter;
 import com.example.rahul.goodplays.R;
 
 /**

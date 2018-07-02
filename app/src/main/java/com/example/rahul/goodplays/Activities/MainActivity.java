@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.rahul.goodplays.R;
-import com.example.rahul.goodplays.SimpleFragmentPagerAdapter;
+import com.example.rahul.goodplays.Rest.SimpleFragmentPagerAdapter;
 
 /**
  * Displays a {@link ViewPager} where each page shows a different day of the week.

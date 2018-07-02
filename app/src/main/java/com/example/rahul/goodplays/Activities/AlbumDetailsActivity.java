@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,12 @@ import com.example.rahul.goodplays.Rest.ApiClient;
 import com.example.rahul.goodplays.Rest.ApiInterface;
 import com.squareup.picasso.Picasso;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -49,7 +56,7 @@ public class AlbumDetailsActivity extends AppCompatActivity {
     ImageView albumImage;
     ProgressBar progress;
 
-    String name, artist, date;
+    String name, artist, date, url=null;
     int rating, albumID;
     Album album;
 
@@ -91,6 +98,7 @@ public class AlbumDetailsActivity extends AppCompatActivity {
                     rating = album.getAlbumRating();
                     date = album.getAlbumReleaseDate();
                     artist = album.getArtistName();
+                    url = album.getAlbumEditUrl();
 
                     artistField.setText(artist);
 
@@ -104,7 +112,8 @@ public class AlbumDetailsActivity extends AppCompatActivity {
                     else
                         yearField.setText("N/A");
 
-                    Picasso.get().load(album.getAlbumCoverart100x100()).into(albumImage);
+                    new Lyrics().execute(url);
+
                 }
 
                 @Override
@@ -121,6 +130,7 @@ public class AlbumDetailsActivity extends AppCompatActivity {
             rating = album.getAlbumRating();
             date = album.getAlbumReleaseDate();
             artist = album.getArtistName();
+            url = album.getAlbumEditUrl();
 
             artistField.setText(artist);
 
@@ -133,8 +143,12 @@ public class AlbumDetailsActivity extends AppCompatActivity {
                 yearField.setText(date.substring(0,4));
             else
                 yearField.setText("N/A");
-            Picasso.get().load(album.getAlbumCoverart100x100()).into(albumImage);
+
+            new Lyrics().execute(url);
         }
+
+
+
 
         Call<Example> exampleCall = apiService.getAlbumTracks(albumID,30, API_KEY);
 
@@ -166,6 +180,38 @@ public class AlbumDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private class Lyrics extends AsyncTask<String, Void, Void> {
+        String imgSrc;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(String... url) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url[0]).get();
+                Elements img = document.select("div[class=mxm-album-banner__coverart] img[src]");
+                // Locate the src attribute
+                imgSrc = img.attr("src");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            Picasso.get().load(Uri.parse("http:"+imgSrc)).into(albumImage);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

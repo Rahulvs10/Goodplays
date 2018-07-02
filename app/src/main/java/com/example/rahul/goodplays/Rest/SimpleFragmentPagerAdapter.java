@@ -1,4 +1,4 @@
-package com.example.rahul.goodplays;
+package com.example.rahul.goodplays.Rest;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

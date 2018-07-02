@@ -1,4 +1,4 @@
-package com.example.rahul.goodplays.Data;
+package com.example.rahul.goodplays.Adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import com.example.rahul.goodplays.Data.FavouriteContract;
 import com.example.rahul.goodplays.R;
 
 public class ListCursorAdapter extends CursorAdapter {
