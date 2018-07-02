@@ -45,7 +45,7 @@ public class ArtistTracksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_artist_tracks);
+        setContentView(R.layout.activity_list_view);
 
 
         Bundle extras = getIntent().getExtras();
@@ -54,8 +54,8 @@ public class ArtistTracksActivity extends AppCompatActivity {
         setTitle(name + "'s songs");
 
 
-        tracksList = findViewById(R.id.artistTracksList);
-        progressBar = findViewById(R.id.progress);
+        tracksList = findViewById(R.id.listView);
+        progressBar = findViewById(R.id.progressbar);
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);

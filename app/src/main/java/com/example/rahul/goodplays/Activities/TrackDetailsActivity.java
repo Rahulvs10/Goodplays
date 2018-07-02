@@ -150,6 +150,7 @@ public class TrackDetailsActivity extends AppCompatActivity {
                     }
                     else{
                         lyricsView.setVisibility(View.INVISIBLE);
+                        lyricsText.setVisibility(View.VISIBLE);
                         lyricsText.setText("Lyrics not found!!");
                     }
                 }
@@ -157,8 +158,18 @@ public class TrackDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onFailure (Call < Example > call, Throwable t){
                     Log.i("Failed",t.getMessage());
+                    progressBar.setVisibility(View.GONE);
+                    lyricsView.setVisibility(View.INVISIBLE);
+                    lyricsText.setVisibility(View.VISIBLE);
+                    lyricsText.setText("Lyrics not found!!");
                 }
             });
+        }
+        else {
+            progressBar.setVisibility(View.GONE);
+            lyricsView.setVisibility(View.INVISIBLE);
+            lyricsText.setVisibility(View.VISIBLE);
+            lyricsText.setText("Lyrics not found!!");
         }
 
     }

@@ -44,12 +44,12 @@ public class ArtistsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_artitsts);
+        setContentView(R.layout.activity_list_view);
 
 
-        progressBar = findViewById(R.id.progressbarArtists);
+        progressBar = findViewById(R.id.progressbar);
         progressBar.setVisibility(View.INVISIBLE);
-        artistListView = findViewById(R.id.artistList);
+        artistListView = findViewById(R.id.listView);
 
         ConnectivityManager cm =
                 (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);

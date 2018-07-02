@@ -6,8 +6,10 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.rahul.goodplays.Data.FavouriteContract;
@@ -20,13 +22,17 @@ public class FavouriteActivity extends AppCompatActivity implements LoaderManage
     ListView favList;
     ListCursorAdapter mAdapter;
     TextView empty;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favourite);
+        setContentView(R.layout.activity_list_view);
 
-        favList = findViewById(R.id.favouritesList);
-        empty = findViewById(R.id.emptyfav);
+        favList = findViewById(R.id.listView);
+        empty = findViewById(R.id.listEmptyView);
+        empty.setText("Its loney here. Add your favourites to this list.");
+        progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
         mAdapter = new ListCursorAdapter(this,null);
         favList.setAdapter(mAdapter);
         favList.setEmptyView(empty);

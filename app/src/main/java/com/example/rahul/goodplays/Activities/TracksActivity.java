@@ -18,9 +18,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.rahul.goodplays.Adapters.ArtistListAdapter;
 import com.example.rahul.goodplays.Adapters.TrackListAdapter;
-import com.example.rahul.goodplays.Model.Artist;
 import com.example.rahul.goodplays.Model.Example;
 import com.example.rahul.goodplays.Model.Track;
 import com.example.rahul.goodplays.Model.TrackList;
@@ -44,11 +42,11 @@ public class TracksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_tracks);
+        setContentView(R.layout.activity_list_view);
 
-        progressBar = findViewById(R.id.progressbarTracks);
+        progressBar = findViewById(R.id.progressbar);
         progressBar.setVisibility(View.INVISIBLE);
-        trackList = findViewById(R.id.trackList);
+        trackList = findViewById(R.id.listView);
 
         ConnectivityManager cm =
                 (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
